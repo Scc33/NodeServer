@@ -40,10 +40,9 @@ const handlerMetrics = (req: Request, res: Response) => {
     .send(`Hits: ${config.fileserverHits}`);
 };
 
-app.get("/healthz", handlerReadiness);
-app.get("/metrics", handlerMetrics);
-app.get("/metrics", handlerMetrics);
-app.get("/reset", handlerMetricsReset);
+app.get("/api/healthz", handlerReadiness);
+app.get("/api/metrics", handlerMetrics);
+app.get("/api/reset", handlerMetricsReset);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
