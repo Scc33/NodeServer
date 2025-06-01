@@ -34,15 +34,17 @@ const handlerReadiness = (req: Request, res: Response) => {
 };
 
 const handlerMetrics = (req: Request, res: Response) => {
-  res
-    .status(200)
-    .contentType("text/plain; charset=utf-8")
-    .send(`Hits: ${config.fileserverHits}`);
+  res.status(200).contentType("text/html; charset=utf-8").send(`<html>
+  <body>
+    <h1>Welcome, Chirpy Admin</h1>
+    <p>Chirpy has been visited ${config.fileserverHits} times!</p>
+  </body>
+</html>`);
 };
 
 app.get("/api/healthz", handlerReadiness);
-app.get("/api/metrics", handlerMetrics);
-app.get("/api/reset", handlerMetricsReset);
+app.get("/admin/metrics", handlerMetrics);
+app.get("/admin/reset", handlerMetricsReset);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
